@@ -1,0 +1,33 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #111;
+}
+
+/* Container for the video, ensures aspect ratio is 16:9 */
+.camera-container {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    height: 0;
+    padding-top: 56.25%; /* 16:9 Aspect ratio (9 / 16 = 0.5625) */
+    overflow: hidden;
+}
+
+#video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the video fills the container */
+}
