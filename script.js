@@ -3,8 +3,15 @@ window.onload = function() {
 
     // Check if the browser supports mediaDevices API
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Access the webcam
-        navigator.mediaDevices.getUserMedia({ video: true })
+        // Constraints to access the rear camera
+        const constraints = {
+            video: {
+                facingMode: "environment"  // Use the rear camera
+            }
+        };
+
+        // Access the rear camera
+        navigator.mediaDevices.getUserMedia(constraints)
             .then(function(stream) {
                 videoElement.srcObject = stream;
             })
