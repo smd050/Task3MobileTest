@@ -1,33 +1,183 @@
+body {
+    background-color: #444;
+    overflow: auto;
+}
+
+.container{
+    display: flex;
+    width: 1280px;
+    height: 720px;
+}
+
+
+/*************************************************CONTAINERS*******************************************************/
+.main-container {
+    display: flex;
+    width: 1500px;
+    height: 730px;
+    background-color: #333;
+    border-radius: 7px;
+    border: 3px transparent;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+
+/* Video Container */
+.video-container {
+    flex: 5;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid transparent;
+    transition: border-color 0.3s ease;
+    position: relative;
+}
+
+
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    background-color: #333;
+}
+
+
+.Toggles_Container {
+    flex: 1;
+    background-color: #444;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.Toggles_Container h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+/************************************************TOGGLE SWITCH****************************************************/
+input[type="checkbox"] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 60px; /* Adjusted width for smaller toggle */
+    height: 30px; /* Adjusted height for smaller toggle */
+    background: grey;
+    display: inline-block;
+    border-radius: 30px;
+    position: relative;
+    transition: background 0.3s;
+}
+
+label:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 24px;
+    height: 24px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + label {
+    background: #ff1100;
+}
+
+input:checked + label:after {
+    left: calc(100% - 3px);
+    transform: translateX(-100%);
+}
+
+label:active:after {
+    width: 30px;
+}
+
+
+
+
+/*******************************************************************Right Panel********************************************************/
+
+.toggle-subtext {
+ color: #fff;
+ font-size: 25px;
+}
+
+hr {
+    background-color: orange; height: 1px; border: 0;
+}
+.fading-line {
+    width: 100%;
+}
+
+
 
   /**Telemetry overlay Settings**/
   .overlay{
     height: 25em;
     width: 75em;
     bottom: 0px;
-    background-color: black;
+    left: 10px;
+    top: 330px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position:relative;
+    position:absolute;
   }
 
-  .overlaySection{
+  .overlaySection1{
     width: 349px;
     height: 266px;
-
+    transition: opacity 0.3s ease;
   }
+
+  .overlaySection2{
+    width: 349px;
+    height: 266px;
+    transition: opacity 0.3s ease;
+  }
+
+  .overlaySection3{
+    width: 349px;
+    height: 266px;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Class to hide the contents */
+.hidden {
+    display: none; /* Hides the entire section */
+}
 
 
 
   /** this is for the floating texts inside overlay**/
-  #angle {
+  #leanAngle {
     color: white;
     font-size: 36px;
     line-height: 100%;
-    left: 50%;
+    left: 52%;
     transform: translate(-50%, -50%);
     position: absolute;
-    top:35%;
+    top:55%;
     z-index: 1;
   }
 
@@ -38,7 +188,7 @@
     left: 75%;
     transform: translate(-50%, -50%);
     position: absolute;
-    top:35%;
+    top:40%;
     z-index: 1;
   }
   
@@ -49,7 +199,7 @@
     left: 75%;
     transform: translate(-50%, -50%);
     position: absolute;
-    top:40%;
+    top:46%;
     z-index: 1;
   }
 
@@ -60,10 +210,42 @@
     left: 74%;
     transform: translate(-50%, -50%);
     position: absolute;
-    top:45%;
+    top:52.5%;
     z-index: 1;
   }
 
+  #Xaxis {
+    color: white;
+    font-size: 26px;
+    line-height: 100%;
+    left: 74%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top:60%;
+    z-index: 1;
+  }
+
+  #Yaxis {
+    color: white;
+    font-size: 26px;
+    line-height: 100%;
+    left: 74%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top:67.5%;
+    z-index: 1;
+  }
+
+  #Zaxis {
+    color: white;
+    font-size: 26px;
+    line-height: 100%;
+    left: 74%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top:75%;
+    z-index: 1;
+  }
   
   #speed {
     color: white;
@@ -117,6 +299,7 @@ input[type="range"] {
   -webkit-transition: .2s;
   transition: opacity .2s;
   border-radius: 5px; /* Round the edges of the slider */
+  
 }
 
 /* Style the slider thumb */
@@ -137,3 +320,5 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   border-radius: 50%; /* Round the edges of the thumb */
 }
+
+
