@@ -235,8 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const speed = position.coords.speed; // Speed in meters per second (null if not available)
     
         // Displaying the latitude and longitude on the page
-        document.getElementById("longitude").textContent = `Longitude: ${longitude.toFixed(3)}`;
-        document.getElementById("latitude").textContent = `Latitude: ${latitude.toFixed(3)}`;
+        document.getElementById("longitude").textContent = `Long: ${longitude.toFixed(3)}`;
+        document.getElementById("latitude").textContent = `Lat: ${latitude.toFixed(3)}`;
         // Displaying the speed on the page (if available)
         if (speed !== null) {
             document.getElementById("speed").textContent = `Speed: ${speed.toFixed(2)} m/s`;
