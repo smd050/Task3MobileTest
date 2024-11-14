@@ -174,31 +174,37 @@ document.addEventListener('DOMContentLoaded', () => {
     //Lean Angle Section **********************************************************************************
 
     // Select the leanAngle and LeanSlider elements
-const leanAngleElement = document.getElementById("leanAngle");
-const leanSlider = document.getElementById("LeanSlider");
+// Function to update the leanSlider value based on Y-axis (gamma) orientation
+function updateLeanSlider(yAxisValue) {
+    const leanSlider = document.getElementById("LeanSlider");
+    const leanAngleElement = document.getElementById("leanAngle");
 
-// Function to update the slider when leanAngle is updated
-function updateSliderFromAngle() {
-    // Extract the numerical value from leanAngle text (e.g., "25°" -> 25)
-    const angleValue = parseInt(leanAngleElement.textContent);
-    // Update the slider to match this value
-    leanSlider.value = angleValue;
+    // Map Y-axis values to slider range (0-120)
+    let sliderValue;
+    if (yAxisValue <= 0) {
+        // If Y-axis is between 0 and -60, map to slider values 0 to 60
+        sliderValue = Math.max(0, Math.min(60, 60 + yAxisValue));
+    } else {
+        // If Y-axis is between 0 and 60, map to slider values 60 to 120
+        sliderValue = Math.max(60, Math.min(120, 60 + yAxisValue));
+    }
+
+    // Update slider and angle display
+    leanSlider.value = sliderValue;
+    leanAngleElement.textContent = `${sliderValue.toFixed(2)}°`;
 }
 
-// Function to update leanAngle text when the slider changes
-function updateAngleFromSlider() {
-    // Get the slider's current value
-    const sliderValue = leanSlider.value;
-    // Update the leanAngle text to reflect this value
-    leanAngleElement.textContent = `${sliderValue}°`;
+// Check if DeviceOrientation is supported
+if (window.DeviceOrientationEvent) {
+    window.addEventListener('deviceorientation', function(event) {
+        const gamma = event.gamma || 0; // Y-axis value
+
+        // Call updateLeanSlider with the current Y-axis (gamma) value
+        updateLeanSlider(gamma);
+    }, false);
+} else {
+    document.getElementById("leanAngle").textContent = `Device orientation not supported`;
 }
-
-// Add an event listener to the slider to update leanAngle when slider value changes
-leanSlider.addEventListener("input", updateAngleFromSlider);
-
-// Call updateSliderFromAngle initially to sync slider with initial leanAngle
-updateSliderFromAngle();
-
 
 
     // Function to update h5 with a random number between 0 and 180
@@ -284,11 +290,14 @@ updateSliderFromAngle();
             const alpha = event.alpha || 0; // Rotation around z-axis
             const beta = event.beta || 0;   // Rotation around x-axis
             const gamma = event.gamma || 0; // Rotation around y-axis
+            
 
             // Displaying the orientation data in XYZ format
             document.getElementById("Xaxis").textContent = `X: ${beta.toFixed(2)}`;
             document.getElementById("Yaxis").textContent = `Y: ${gamma.toFixed(2)}`;
             document.getElementById("Zaxis").textContent = `Z: ${alpha.toFixed(2)}`;
+            
+
         }, false);
     } else {
         document.getElementById("Xaxis").textContent = `...`;
