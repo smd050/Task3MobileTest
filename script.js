@@ -181,6 +181,7 @@ function updateLeanSlider(yAxisValue) {
 
     // Map Y-axis values to slider range (0-120)
     let sliderValue = yAxisValue;
+    console.log(yAxisValue);
     
 
     // Update slider and angle display
@@ -201,14 +202,6 @@ if (window.DeviceOrientationEvent) {
 }
 
 
-    // Function to update h5 with a random number between 0 and 180
-    function updateRandomNumber() {
-        const randomNum = Math.floor(Math.random() * 120); // Generates a random number between 0 and 180
-        angleValue.textContent = randomNum;
-    }
-
-    // Update the h5 text every 500 milliseconds (adjust as needed)
-    setInterval(updateRandomNumber, 500);
     
     document.getElementById('speedSwitch').addEventListener('change', function() {
         const overlaySection = document.querySelector('.overlaySection1');
