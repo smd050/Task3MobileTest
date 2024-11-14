@@ -173,17 +173,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Lean Angle Section **********************************************************************************
 
-    // Get the value of the <h5> element
-    const angleValue = document.getElementById("leanAngle").textContent;
+    // Select the leanAngle and LeanSlider elements
+const leanAngleElement = document.getElementById("leanAngle");
+const leanSlider = document.getElementById("LeanSlider");
 
-    // Get the slider element
-    const leanSlider = document.getElementById("LeanSlider");
-
-    // Set the slider value to the h5 value
+// Function to update the slider when leanAngle is updated
+function updateSliderFromAngle() {
+    // Extract the numerical value from leanAngle text (e.g., "25°" -> 25)
+    const angleValue = parseInt(leanAngleElement.textContent);
+    // Update the slider to match this value
     leanSlider.value = angleValue;
-    leanSlider.addEventListener('input', function() {
-        angleValue.textContent = this.value; // Update the label text with the current value of the slider
-    });
+}
+
+// Function to update leanAngle text when the slider changes
+function updateAngleFromSlider() {
+    // Get the slider's current value
+    const sliderValue = leanSlider.value;
+    // Update the leanAngle text to reflect this value
+    leanAngleElement.textContent = `${sliderValue}°`;
+}
+
+// Add an event listener to the slider to update leanAngle when slider value changes
+leanSlider.addEventListener("input", updateAngleFromSlider);
+
+// Call updateSliderFromAngle initially to sync slider with initial leanAngle
+updateSliderFromAngle();
+
 
 
     // Function to update h5 with a random number between 0 and 180
