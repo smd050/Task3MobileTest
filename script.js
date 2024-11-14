@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // speedDisplay.textContent = speed + ' km/h';
     }
     // Call the updateSpeedDisplay function every 100 milliseconds
-    setInterval(updateSpeedDisplay, 100);
+    setInterval(updateSpeedDisplay, 1000);
 
 
 
@@ -246,8 +246,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function errorHandler(error) {
-        document.getElementById("longitude").textContent = "Long";
-        document.getElementById("speed").textContent = "Speed: Not available";
+        document.getElementById("longitude").textContent = "Long:";
+        document.getElementById("speed").textContent = "N/A";
     }
     
     // Check if geolocation is supported
@@ -269,19 +269,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const alpha = event.alpha || 0; // Rotation around z-axis
             const beta = event.beta || 0;   // Rotation around x-axis
             const gamma = event.gamma || 0; // Rotation around y-axis
-    
+
             // Displaying the orientation data in XYZ format
             document.getElementById("Xaxis").textContent = `X: ${beta.toFixed(2)}`;
             document.getElementById("Yaxis").textContent = `Y: ${gamma.toFixed(2)}`;
             document.getElementById("Zaxis").textContent = `Z: ${alpha.toFixed(2)}`;
-
-
         }, false);
     } else {
         document.getElementById("Xaxis").textContent = `...`;
-            document.getElementById("Yaxis").textContent = `...`;
-            document.getElementById("Zaxis").textContent = `...`;
+        document.getElementById("Yaxis").textContent = `...`;
+        document.getElementById("Zaxis").textContent = `...`;
     }
+
+    
+    setInterval(updateLocation, 2000);
     
 
 });
