@@ -180,14 +180,8 @@ function updateLeanSlider(yAxisValue) {
     const leanAngleElement = document.getElementById("leanAngle");
 
     // Map Y-axis values to slider range (0-120)
-    let sliderValue;
-    if (yAxisValue <= 0) {
-        // If Y-axis is between 0 and -60, map to slider values 0 to 60
-        sliderValue = Math.max(0, Math.min(60, 60 + yAxisValue));
-    } else {
-        // If Y-axis is between 0 and 60, map to slider values 60 to 120
-        sliderValue = Math.max(60, Math.min(120, 60 + yAxisValue));
-    }
+    let sliderValue = yAxisValue;
+    
 
     // Update slider and angle display
     leanSlider.value = sliderValue;
